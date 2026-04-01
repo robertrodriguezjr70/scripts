@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 04/01/2026 rrodriguez - This script will check docker info to see how many containers are stopped, and push the stopped container count to a file named dockerContainerStatus.txt
+#                         It will then push metrics to AWS Cloudwatch. Cloudwatch will then check to see if the container count down is > 0 and alert if any containers are stopped.
 # add this to crontab -e so that script runs every 60 seconds
 # */10 * * * * /root/DockerContainerDownCheck.sh
 
