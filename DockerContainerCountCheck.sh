@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # 04/01/2026 rrodriguez - This script will check docker info to see how many containers are running, and push the container count to a file named dockerContainerCount.txt
+#                         It will then push metrics to AWS Cloudwatch. Cloudwatch will then check to see if the container count > 1 and alert if more than one containers is running.
 # add this to crontab -e so that script runs every 60 seconds
 # */10 * * * * /root/DockerContainerDownCheck.sh
 
