@@ -7,7 +7,7 @@ set -euo pipefail
 
 FILE="dockerContainerCount.txt"
 NAMESPACE="Custom/Docker"
-METRIC_NAME="ContainerUp"
+METRIC_NAME="ContainerCount"
 REGION="eu-west-1"
 
 RUNNING_COUNT="$(docker info 2>/dev/null | awk -F': ' '/Running:/ {print $2}' | xargs)"
