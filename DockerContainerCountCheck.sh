@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# add this to crontab -e so that script runs every 60 seconds
+# This script will query docker info and push the running container count to an output file called dockercontainercount.txt,
+# and push customer metric(ContainerCount) to Cloudwatch
+
+# add this to crontab -e so that script runs every 10 minutes
 # */10 * * * * /root/DockerContainerDownCheck.sh
 
 set -euo pipefail
