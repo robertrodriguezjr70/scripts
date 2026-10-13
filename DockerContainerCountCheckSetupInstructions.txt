@@ -1,0 +1,65 @@
+ curl -fLO https://raw.githubusercontent.com/robertrodriguezjr70/scripts/main/DockerContainerCountCheck.sh
+DockerContainerDownCheck.sh
+
+
+# 04/01/2026 rrodriguez - This script will check docker info to see how many containers are stopped, and push the stopped container count to a file named dockerContainerStatus.txt
+#                         It will then push metrics to AWS Cloudwatch. Cloudwatch will then check to see if the container count down is > 0 and alert if any containers are stopped.
+# add this to crontab -e so that script runs every 60 seconds
+# */10 * * * * /root/DockerContainerCountCheck.sh
+
+Script Path on GitHub: DockerContainerCountCheck.sh
+text file: dockerContainerCount.txt
+chmod 755 DockerContainerCountCheck.sh
+touch dockerContainerCount.txt
+chmod 644 dockerContainerCount.txt
+
+steps
+log into vm
+sudo su -
+cd /root/
+ls -lart and you should see DockerContainerCountCheck.sh and dockerContainerCount.txt
+
+
+
+1)When you run the sudo su - 
+2)then docker info
+3) look for ...
+Server:
+ Containers: 3
+  Running: 3
+  Paused: 0
+  Stopped: 0
+
+
+Topic:
+MVTS1_Dev_ContainerDown_Alert    to awsadmin@crawfordtech.com
+MVTS2_Dev_ContainerDown_Alert    to awsadmin@crawfordtech.com
+
+
+------------------------
+Install crontab:  dnf install cronie -y
+
+Check if Cron is running:  systemctl status crond or systemctl start crond 
+enalbe cron so that it starts if vm rebooted: systemctl enable --now crond
+
+
+
+#install the aws cli
+
+dnf install unzip -y
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+unzip awscliv2.zip
+
+./aws/install
+
+
+
+----------------------- alert ---------------
+
+ContainerDown_Alert (MVTS2D)
+
+----------------------- alert ---------------
+
+
